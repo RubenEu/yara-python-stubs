@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "yara-python-stubs"
+version = "4.5.5"
+description = "PEP 561 type stubs for yara-python 4.5.5"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.8"
+authors = [
+    { name = "Rubén García Rojas", email = "eu.garcia.ruben@gmail.com" },
+]
+keywords = ["yara", "yara-python", "stubs", "typing", "pep561", "type-hints"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Security",
+    "Typing :: Stubs Only",
+]
+
+[project.optional-dependencies]
+runtime = ["yara-python==4.5.5"]
+
+[project.urls]
+"Upstream (yara-python)" = "https://github.com/VirusTotal/yara-python"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/yara-stubs"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/yara-stubs",
+    "README.md",
+    "LICENSE",
+    "pyproject.toml",
+]
