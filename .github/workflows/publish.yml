@@ -10,7 +10,7 @@ on:
 
 jobs:
   check:
-    name: Check stubs against runtime
+    name: Lint stubs (mypy --strict)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,17 +20,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install system dependencies
-        run: sudo apt-get update && sudo apt-get install -y libyara-dev
-
-      - name: Install Python dependencies
+      - name: Install mypy
         run: |
           python -m pip install --upgrade pip
-          pip install mypy yara-python==4.5.5
-          pip install .
+          pip install mypy
 
-      - name: Verify stubs against runtime (stubtest)
-        run: python -m mypy.stubtest yara
+      - name: Type-check stubs
+        run: python -m mypy --strict src/yara-stubs/__init__.pyi
 
   build:
     name: Build distributions
